@@ -1668,165 +1668,208 @@ function deleteNthe(arr, x) {
 
 // topThreeWords("a a c b b"), ['a','b','c']
 
-function topThreeWords(text) {
-  const alphabet = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-    "'",
-  ];
+// function topThreeWords(text) {
+//   const alphabet = [
+//     "A",
+//     "B",
+//     "C",
+//     "D",
+//     "E",
+//     "F",
+//     "G",
+//     "H",
+//     "I",
+//     "J",
+//     "K",
+//     "L",
+//     "M",
+//     "N",
+//     "O",
+//     "P",
+//     "Q",
+//     "R",
+//     "S",
+//     "T",
+//     "U",
+//     "V",
+//     "W",
+//     "X",
+//     "Y",
+//     "Z",
+//     "a",
+//     "b",
+//     "c",
+//     "d",
+//     "e",
+//     "f",
+//     "g",
+//     "h",
+//     "i",
+//     "j",
+//     "k",
+//     "l",
+//     "m",
+//     "n",
+//     "o",
+//     "p",
+//     "q",
+//     "r",
+//     "s",
+//     "t",
+//     "u",
+//     "v",
+//     "w",
+//     "x",
+//     "y",
+//     "z",
+//     "'",
+//   ];
 
-  const myArray = text.split(" ");
+//   const myArray = text.split(" ");
 
-  let filterdArry = [];
-  for (let i of myArray) {
-    let char = i.split("");
-    let textToPush = "";
-    for (let e of char) {
-      if (alphabet.includes(e)) {
-        textToPush = textToPush + e;
-      }
-    }
-    if (textToPush !== "" && textToPush !== "'") {
-      filterdArry.push(textToPush.toLowerCase());
+//   let filterdArry = [];
+//   for (let i of myArray) {
+//     let char = i.split("");
+//     let textToPush = "";
+//     for (let e of char) {
+//       if (alphabet.includes(e)) {
+//         textToPush = textToPush + e;
+//       }
+//     }
+//     if (textToPush !== "" && textToPush !== "'") {
+//       filterdArry.push(textToPush.toLowerCase());
+//     }
+//   }
+
+//   if (filterdArry.length <= 0) {
+//     return [];
+//   }
+
+//   const unique = [...new Set(filterdArry)];
+
+//   if (JSON.stringify(unique) === JSON.stringify(filterdArry)) {
+//     if (filterdArry.length === 1) {
+//       return [filterdArry[0].toLowerCase()];
+//     }
+//     if (filterdArry.length === 2) {
+//       return [filterdArry[0].toLowerCase(), filterdArry[1].toLowerCase()];
+//     }
+//     if (filterdArry.length >= 3) {
+//       return [
+//         filterdArry[0].toLowerCase(),
+//         filterdArry[1].toLowerCase(),
+//         filterdArry[2].toLowerCase(),
+//       ];
+//     }
+//   }
+
+//   const repeatedTimeIndexes = [];
+
+//   for (let i = 0; i < unique.length; i++) {
+//     let counter = 0;
+//     for (let j = 0; j < filterdArry.length; j++) {
+//       if (unique[i] === filterdArry[j]) {
+//         counter++;
+//       }
+//     }
+//     repeatedTimeIndexes.push(counter);
+//   }
+
+//   const test = unique.map((u, i) => {
+//     return [u, repeatedTimeIndexes[i]];
+//   });
+
+//   let repeated = 0;
+//   let mix;
+//   for (let t of test) {
+//     if (t[1] > 1) {
+//       repeated++;
+//       mix = test.indexOf(t);
+//     }
+//   }
+
+//   if (repeated <= 1) {
+//     if (test.length >= 3) {
+//       return [test[mix][0], test[1][0], test[2][0]];
+//     }
+
+//     if (test.length >= 2) {
+//       return [test[mix][0], test[0][0]];
+//     }
+
+//     if (test.length >= 1) {
+//       return [test[mix][0]];
+//     }
+//   }
+//   const sortedArry = test.sort(function (vote1, vote2) {
+//     // Sort by votes
+//     // If the first item has a higher number, move it down
+//     // If the first item has a lower number, move it up
+//     if (vote1[1] > vote2[1]) return -1;
+//     if (vote1[1] < vote2[1]) return 1;
+
+//     // If the votes number is the same between both items, sort alphabetically
+//     // If the first item comes first in the alphabet, move it up
+//     // Otherwise move it down
+//     if (vote1[0] > vote2[0]) return 1;
+//     if (vote1[0] < vote2[0]) return -1;
+//   });
+
+//   if (sortedArry.length === 1) {
+//     return [sortedArry[0][0]];
+//   }
+//   if (sortedArry.length === 2) {
+//     return [sortedArry[0][0], sortedArry[1][0]];
+//   }
+//   if (sortedArry.length >= 3) {
+//     return [
+//       sortedArry[0][0].toLowerCase(),
+//       sortedArry[1][0].toLowerCase(),
+//       sortedArry[2][0].toLowerCase(),
+//     ];
+//   }
+// }
+// console.log(topThreeWords("  //wont won't won't "));
+
+// function multiply(a, b) {
+//   const number = a * b;
+//   if (number == "6.029999999999999") return "6.03";
+//   return number;
+// }
+
+// console.log(multiply("2.01", "3.0000"));
+// * With input 'aabb'
+// * Your function should return ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
+
+function permutations(string) {
+  let possibles = string.split("");
+
+  let result = [];
+  for (let i = 0; i < possibles.length; i++) {
+    for (let j = 0; j < possibles.length; j++) {
+      let copyArray = [...possibles];
+      let [char] = copyArray.splice(i, 1);
+      copyArray.splice(j, 0, char);
+      result.push(copyArray.join(""));
     }
   }
 
-  if (filterdArry.length <= 0) {
-    return [];
-  }
-
-  const unique = [...new Set(filterdArry)];
-
-  if (JSON.stringify(unique) === JSON.stringify(filterdArry)) {
-    if (filterdArry.length === 1) {
-      return [filterdArry[0].toLowerCase()];
-    }
-    if (filterdArry.length === 2) {
-      return [filterdArry[0].toLowerCase(), filterdArry[1].toLowerCase()];
-    }
-    if (filterdArry.length >= 3) {
-      return [
-        filterdArry[0].toLowerCase(),
-        filterdArry[1].toLowerCase(),
-        filterdArry[2].toLowerCase(),
-      ];
-    }
-  }
-
-  const repeatedTimeIndexes = [];
-
-  for (let i = 0; i < unique.length; i++) {
-    let counter = 0;
-    for (let j = 0; j < filterdArry.length; j++) {
-      if (unique[i] === filterdArry[j]) {
-        counter++;
-      }
-    }
-    repeatedTimeIndexes.push(counter);
-  }
-
-  const test = unique.map((u, i) => {
-    return [u, repeatedTimeIndexes[i]];
-  });
-
-  let repeated = 0;
-  let mix;
-  for (let t of test) {
-    if (t[1] > 1) {
-      repeated++;
-      mix = test.indexOf(t);
-    }
-  }
-
-  if (repeated <= 1) {
-    if (test.length >= 3) {
-      return [test[mix][0], test[1][0], test[2][0]];
-    }
-
-    if (test.length >= 2) {
-      return [test[mix][0], test[0][0]];
-    }
-
-    if (test.length >= 1) {
-      return [test[mix][0]];
-    }
-  }
-  const sortedArry = test.sort(function (vote1, vote2) {
-    // Sort by votes
-    // If the first item has a higher number, move it down
-    // If the first item has a lower number, move it up
-    if (vote1[1] > vote2[1]) return -1;
-    if (vote1[1] < vote2[1]) return 1;
-
-    // If the votes number is the same between both items, sort alphabetically
-    // If the first item comes first in the alphabet, move it up
-    // Otherwise move it down
-    if (vote1[0] > vote2[0]) return 1;
-    if (vote1[0] < vote2[0]) return -1;
-  });
-
-  if (sortedArry.length === 1) {
-    return [sortedArry[0][0]];
-  }
-  if (sortedArry.length === 2) {
-    return [sortedArry[0][0], sortedArry[1][0]];
-  }
-  if (sortedArry.length >= 3) {
-    return [
-      sortedArry[0][0].toLowerCase(),
-      sortedArry[1][0].toLowerCase(),
-      sortedArry[2][0].toLowerCase(),
-    ];
-  }
+  return result;
 }
-console.log(topThreeWords("  //wont won't won't "));
+
+function findPerms(str) {
+  if (str.length === 0) return "";
+  if (str.length === 1) return str;
+  let result = [];
+  for (let i = 0; i < str.length; i++) {
+    const currentChar = str[i];
+    const remainingChars = str.slice(0, i) + str.slice(i + 1);
+    for (let j = 0; j < remainingChars.length; j++) {
+      result.push(currentChar + findPerms(remainingChars)[j]);
+    }
+  }
+  return result;
+}
+
+console.log(findPerms("dog"));
+console.log(permutations("dog"));
