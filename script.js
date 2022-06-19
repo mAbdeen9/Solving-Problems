@@ -1841,35 +1841,101 @@ function deleteNthe(arr, x) {
 // * With input 'aabb'
 // * Your function should return ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
 
-function permutations(string) {
-  let possibles = string.split("");
+// function permutations(string) {
+//   let possibles = string.split("");
 
-  let result = [];
-  for (let i = 0; i < possibles.length; i++) {
-    for (let j = 0; j < possibles.length; j++) {
-      let copyArray = [...possibles];
-      let [char] = copyArray.splice(i, 1);
-      copyArray.splice(j, 0, char);
-      result.push(copyArray.join(""));
+//   let result = [];
+//   for (let i = 0; i < possibles.length; i++) {
+//     for (let j = 0; j < possibles.length; j++) {
+//       let copyArray = [...possibles];
+//       let [char] = copyArray.splice(i, 1);
+//       copyArray.splice(j, 0, char);
+//       result.push(copyArray.join(""));
+//     }
+//   }
+
+//   return result;
+// }
+
+// function findPerms(str) {
+//   if (str.length === 0) return "";
+//   if (str.length === 1) return str;
+//   let result = [];
+//   for (let i = 0; i < str.length; i++) {
+//     const currentChar = str[i];
+//     const remainingChars = str.slice(0, i) + str.slice(i + 1);
+//     for (let j = 0; j < remainingChars.length; j++) {
+//       result.push(currentChar + findPerms(remainingChars)[j]);
+//     }
+//   }
+//   return result;
+// }
+
+// console.log(findPerms("dog"));
+// console.log(permutations("dog"));
+
+// const deepFlatArray = (arr, depth = 1) => {
+//   let result = [];
+//   arr.forEach((val) => {
+//     if (Array.isArray(val) && depth > 0) {
+//       return result.push(...deepFlatArray(val, depth - 1));
+//     } else {
+//       result.push(val);
+//     }
+//   });
+//   return result;
+// };
+
+// console.log(deepFlatArray([[1, 2], 2, [3, 4, 5, 6], [2, [2]]], 4));
+
+// function a() {
+//   for (let i = 0; i < 3; i++) {
+//     setTimeout(() => {
+//       (() => {
+//         console.log(i);
+//       })();
+//     }, i * 1000);
+//   }
+// }
+
+// a();
+
+// function findPerms(str) {
+//   if (str.length === 0) return "";
+//   if (str.length === 1) return str;
+//   let result = [];
+//   for (let i = 0; i < str.length; i++) {
+//     const currentChar = str[i];
+//     const remainingChars = str.slice(0, i) + str.slice(i + 1);
+//     for (let j = 0; j < remainingChars.length; j++) {
+//       console.log(findPerms(remainingChars));
+//       result.push(currentChar + findPerms(remainingChars)[j]);
+//     }
+//   }
+//   return result;
+// }
+
+// console.log(findPerms("abc"));
+
+function nextSmaller(n) {
+  const target = n.toString().split("");
+
+  let smaller = n - 1;
+  while (true) {
+    if (smaller <= 0) return -1;
+
+    let smallerArray = smaller.toString().split("");
+    if (
+      smallerArray.includes(target[0]) &&
+      smallerArray.includes(target[1]) &&
+      smallerArray.includes(target[2]) &&
+      smallerArray.includes(target[3])
+    ) {
+      return smaller;
     }
+
+    smaller--;
   }
-
-  return result;
 }
-
-function findPerms(str) {
-  if (str.length === 0) return "";
-  if (str.length === 1) return str;
-  let result = [];
-  for (let i = 0; i < str.length; i++) {
-    const currentChar = str[i];
-    const remainingChars = str.slice(0, i) + str.slice(i + 1);
-    for (let j = 0; j < remainingChars.length; j++) {
-      result.push(currentChar + findPerms(remainingChars)[j]);
-    }
-  }
-  return result;
-}
-
-console.log(findPerms("dog"));
-console.log(permutations("dog"));
+// tt.includes(target[0] && target[1]);
+// console.log(nextSmaller(2071));
