@@ -1939,8 +1939,6 @@ function deleteNthe(arr, x) {
 //   }
 // }
 
-// console.log(nextSmaller(414));
-
 Array.prototype.sameStructureAs = function (other) {
   let firstArray = [];
   let secondArray = [];
@@ -1988,5 +1986,3 @@ Array.prototype.sameStructureAs = function (other) {
 
   return false;
 };
-
-console.log([1, 1, 1].sameStructureAs([1, 1, 1]));
