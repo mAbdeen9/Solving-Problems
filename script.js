@@ -1917,25 +1917,76 @@ function deleteNthe(arr, x) {
 
 // console.log(findPerms("abc"));
 
-function nextSmaller(n) {
-  const target = n.toString().split("");
+// function nextSmaller(n) {
+//   const target = n.toString().split("");
 
-  let smaller = n - 1;
-  while (true) {
-    if (smaller <= 0) return -1;
+//   let smaller = n - 1;
+//   while (true) {
+//     if (smaller <= 0) return -1;
+//     let smallerArray = smaller.toString().split("");
+//     let checker = [];
+//     for (let i = 0; i < target.length; i++) {
+//       checker.push(smallerArray.includes(target[i]));
+//       if (smallerArray.includes(target[i])) {
+//         smallerArray.splice(smallerArray.indexOf(target[i]), 1);
+//       }
+//     }
+//     if (!checker.includes(false)) {
+//       return smaller;
+//     }
 
-    let smallerArray = smaller.toString().split("");
-    if (
-      smallerArray.includes(target[0]) &&
-      smallerArray.includes(target[1]) &&
-      smallerArray.includes(target[2]) &&
-      smallerArray.includes(target[3])
-    ) {
-      return smaller;
+//     smaller--;
+//   }
+// }
+
+// console.log(nextSmaller(414));
+
+Array.prototype.sameStructureAs = function (other) {
+  let firstArray = [];
+  let secondArray = [];
+
+  let nestedArray = (arr) => {
+    let store = [];
+    if (Array.isArray(arr)) {
+      arr.forEach((e) => {
+        if (Array.isArray(e)) {
+          nestedArray(e);
+        }
+        store.push(Array.isArray(e));
+      });
+    } else {
+      store.push(arr);
     }
 
-    smaller--;
+    return store;
+  };
+
+  if (
+    Array.isArray(other) &&
+    Array.isArray(this) &&
+    other.length === this.length
+  ) {
+    this.forEach((val) => {
+      if (Array.isArray(val)) {
+        firstArray.push(...nestedArray(val));
+      }
+      firstArray.push(Array.isArray(val));
+    });
+
+    other.forEach((val) => {
+      if (Array.isArray(val)) {
+        secondArray.push(...nestedArray(val));
+      }
+
+      secondArray.push(Array.isArray(val));
+    });
+
+    if (JSON.stringify(firstArray) === JSON.stringify(secondArray)) return true;
+    if (JSON.stringify(firstArray) !== JSON.stringify(secondArray))
+      return false;
   }
-}
-// tt.includes(target[0] && target[1]);
-// console.log(nextSmaller(2071));
+
+  return false;
+};
+
+console.log([1, 1, 1].sameStructureAs([1, 1, 1]));
