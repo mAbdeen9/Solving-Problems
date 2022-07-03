@@ -1,43 +1,37 @@
-// // a, e, i, o, u
-
-// function disemvowel(str) {
-//   let target = [];
-//   let strArr = str.split("");
-//   for (let i = 0; i < strArr.length; i++) {
-//     if (
-//       strArr[i].toLowerCase() === "e" ||
-//       strArr[i].toLowerCase() === "a" ||
-//       strArr[i].toLowerCase() === "i" ||
-//       strArr[i].toLowerCase() === "o" ||
-//       strArr[i].toLowerCase() === "u"
-//     ) {
-//       continue;
-//     } else {
-//       target.push(strArr[i]);
-//     }
-//   }
-//   return target.join("");
-// }
+function disemvowel(str) {
+  let target = [];
+  let strArr = str.split("");
+  for (let i = 0; i < strArr.length; i++) {
+    if (
+      strArr[i].toLowerCase() === "e" ||
+      strArr[i].toLowerCase() === "a" ||
+      strArr[i].toLowerCase() === "i" ||
+      strArr[i].toLowerCase() === "o" ||
+      strArr[i].toLowerCase() === "u"
+    ) {
+      continue;
+    } else {
+      target.push(strArr[i]);
+    }
+  }
+  return target.join("");
+}
 
 // //   "This website is for losers LOL!"
 // // would become "Ths wbst s fr lsrs LL!".
 
-// // console.log(disemvowel("This website is for losers LOL!"));
+// disemvowel("This website is for losers LOL!");
 
-// // console.log(res);
+// arrayDiff([3,4], [3]), [4]
 
-// // arrayDiff([3,4], [3]), [4]
-
-// function arrayDiff(a, b) {
-//   for (let i = 0; i < b.length; i++) {
-//     while (a.includes(b[i])) {
-//       a.splice(a.indexOf(b[i]), 1);
-//     }
-//   }
-//   return a;
-// }
-
-// // console.log(arrayDiff([3, 4], [3]));
+function arrayDiff(a, b) {
+  for (let i = 0; i < b.length; i++) {
+    while (a.includes(b[i])) {
+      a.splice(a.indexOf(b[i]), 1);
+    }
+  }
+  return a;
+}
 
 // // let items = [
 // //   { id: "b", val: 6, w: 7 },
@@ -1939,50 +1933,108 @@ function deleteNthe(arr, x) {
 //   }
 // }
 
-Array.prototype.sameStructureAs = function (other) {
-  let firstArray = [];
-  let secondArray = [];
+// Array.prototype.sameStructureAs = function (other) {
+//   let firstArray = [];
+//   let secondArray = [];
 
-  let nestedArray = (arr) => {
-    let store = [];
-    if (Array.isArray(arr)) {
-      arr.forEach((e) => {
-        if (Array.isArray(e)) {
-          nestedArray(e);
-        }
-        store.push(Array.isArray(e));
-      });
-    } else {
-      store.push(arr);
-    }
+//   let nestedArray = (arr) => {
+//     let store = [];
+//     if (Array.isArray(arr)) {
+//       arr.forEach((e) => {
+//         if (Array.isArray(e)) {
+//           nestedArray(e);
+//         }
+//         store.push(Array.isArray(e));
+//       });
+//     } else {
+//       store.push(arr);
+//     }
 
-    return store;
-  };
+//     return store;
+//   };
 
+//   if (
+//     Array.isArray(other) &&
+//     Array.isArray(this) &&
+//     other.length === this.length
+//   ) {
+//     this.forEach((val) => {
+//       if (Array.isArray(val)) {
+//         firstArray.push(...nestedArray(val));
+//       }
+//       firstArray.push(Array.isArray(val));
+//     });
+
+//     other.forEach((val) => {
+//       if (Array.isArray(val)) {
+//         secondArray.push(...nestedArray(val));
+//       }
+
+//       secondArray.push(Array.isArray(val));
+//     });
+
+//     if (JSON.stringify(firstArray) === JSON.stringify(secondArray)) return true;
+//     if (JSON.stringify(firstArray) !== JSON.stringify(secondArray))
+//       return false;
+//   }
+
+//   return false;
+// };
+
+function nextBigger(n) {
+  if (n < 10) return -1;
+  const strNumber = n.toString();
+  //Two Digits Handler
   if (
-    Array.isArray(other) &&
-    Array.isArray(this) &&
-    other.length === this.length
+    strNumber.length === 2 &&
+    strNumber[0] !== strNumber[1] &&
+    strNumber[0] < strNumber[1]
   ) {
-    this.forEach((val) => {
-      if (Array.isArray(val)) {
-        firstArray.push(...nestedArray(val));
-      }
-      firstArray.push(Array.isArray(val));
-    });
-
-    other.forEach((val) => {
-      if (Array.isArray(val)) {
-        secondArray.push(...nestedArray(val));
-      }
-
-      secondArray.push(Array.isArray(val));
-    });
-
-    if (JSON.stringify(firstArray) === JSON.stringify(secondArray)) return true;
-    if (JSON.stringify(firstArray) !== JSON.stringify(secondArray))
-      return false;
+    return +strNumber.split("").reverse().join("");
+  }
+  if (
+    (strNumber.length === 2 && strNumber[0] === strNumber[1]) ||
+    (strNumber.length === 2 && strNumber[0] > strNumber[1])
+  ) {
+    return -1;
   }
 
-  return false;
-};
+  //More Than Two Digits
+
+  const numberArray = strNumber.split("");
+
+  const copyArray = [...numberArray];
+  while (copyArray.length > 0) {
+    let comparedArray = [...copyArray.splice(-1), ...copyArray.splice(-1)];
+
+    if (
+      (copyArray.length === 1 && copyArray[0] < comparedArray[0]) ||
+      comparedArray[1]
+    ) {
+      if (copyArray[0] < comparedArray[0] && copyArray[0] < comparedArray[1]) {
+        const smallestNumber =
+          comparedArray[0] > comparedArray[1]
+            ? comparedArray[1]
+            : comparedArray[0];
+
+        numberArray.splice(numberArray.indexOf(smallestNumber), 1);
+        return +[smallestNumber, ...numberArray].join("");
+      }
+    }
+    if (comparedArray[0] > comparedArray[1]) {
+      return +[copyArray, ...comparedArray[0], ...comparedArray[1]]
+        .join(",")
+        .split(",")
+        .join("");
+    }
+  }
+  return -1;
+}
+
+// (nextBigger(12),21)
+// (nextBigger(513),531)
+// (nextBigger(2017),2071)
+// (nextBigger(414),441)
+// (nextBigger(144),414)
+
+console.log(nextBigger(13325));
