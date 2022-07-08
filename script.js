@@ -1981,55 +1981,55 @@ function deleteNthe(arr, x) {
 //   return false;
 // };
 
-function nextBigger(n) {
-  if (n < 10) return -1;
-  const strNumber = n.toString();
-  //Two Digits Handler
-  if (
-    strNumber.length === 2 &&
-    strNumber[0] !== strNumber[1] &&
-    strNumber[0] < strNumber[1]
-  ) {
-    return +strNumber.split("").reverse().join("");
-  }
-  if (
-    (strNumber.length === 2 && strNumber[0] === strNumber[1]) ||
-    (strNumber.length === 2 && strNumber[0] > strNumber[1])
-  ) {
-    return -1;
-  }
+// function nextBigger(n) {
+//   if (n < 10) return -1;
+//   const strNumber = n.toString();
+//   //Two Digits Handler
+//   if (
+//     strNumber.length === 2 &&
+//     strNumber[0] !== strNumber[1] &&
+//     strNumber[0] < strNumber[1]
+//   ) {
+//     return +strNumber.split("").reverse().join("");
+//   }
+//   if (
+//     (strNumber.length === 2 && strNumber[0] === strNumber[1]) ||
+//     (strNumber.length === 2 && strNumber[0] > strNumber[1])
+//   ) {
+//     return -1;
+//   }
 
-  //More Than Two Digits
+//   //More Than Two Digits
 
-  const numberArray = strNumber.split("");
+//   const numberArray = strNumber.split("");
 
-  const copyArray = [...numberArray];
-  while (copyArray.length > 0) {
-    let comparedArray = [...copyArray.splice(-1), ...copyArray.splice(-1)];
+//   const copyArray = [...numberArray];
+//   while (copyArray.length > 0) {
+//     let comparedArray = [...copyArray.splice(-1), ...copyArray.splice(-1)];
 
-    if (
-      (copyArray.length === 1 && copyArray[0] < comparedArray[0]) ||
-      comparedArray[1]
-    ) {
-      if (copyArray[0] < comparedArray[0] && copyArray[0] < comparedArray[1]) {
-        const smallestNumber =
-          comparedArray[0] > comparedArray[1]
-            ? comparedArray[1]
-            : comparedArray[0];
+//     if (
+//       (copyArray.length === 1 && copyArray[0] < comparedArray[0]) ||
+//       comparedArray[1]
+//     ) {
+//       if (copyArray[0] < comparedArray[0] && copyArray[0] < comparedArray[1]) {
+//         const smallestNumber =
+//           comparedArray[0] > comparedArray[1]
+//             ? comparedArray[1]
+//             : comparedArray[0];
 
-        numberArray.splice(numberArray.indexOf(smallestNumber), 1);
-        return +[smallestNumber, ...numberArray].join("");
-      }
-    }
-    if (comparedArray[0] > comparedArray[1]) {
-      return +[copyArray, ...comparedArray[0], ...comparedArray[1]]
-        .join(",")
-        .split(",")
-        .join("");
-    }
-  }
-  return -1;
-}
+//         numberArray.splice(numberArray.indexOf(smallestNumber), 1);
+//         return +[smallestNumber, ...numberArray].join("");
+//       }
+//     }
+//     if (comparedArray[0] > comparedArray[1]) {
+//       return +[copyArray, ...comparedArray[0], ...comparedArray[1]]
+//         .join(",")
+//         .split(",")
+//         .join("");
+//     }
+//   }
+//   return -1;
+// }
 
 // (nextBigger(12),21)
 // (nextBigger(513),531)
@@ -2037,4 +2037,143 @@ function nextBigger(n) {
 // (nextBigger(414),441)
 // (nextBigger(144),414)
 
-console.log(nextBigger(13325));
+// function nextBigger(n, startingIndex = 0) {
+//   const numberToArray = n.toString().split("");
+//   if (startingIndex > numberToArray.length) return -1;
+//   const cloneArray = [...numberToArray];
+//   const reversedArray = cloneArray.reverse();
+//   const endSlice = startingIndex + 2;
+//   const comperTwoNumbers = reversedArray.slice(startingIndex, endSlice);
+
+//   if (comperTwoNumbers[0] > comperTwoNumbers[1]) {
+//     numberToArray.splice(
+//       numberToArray.length - 1 - startingIndex,
+//       1,
+//       comperTwoNumbers[1]
+//     );
+
+//     numberToArray.splice(
+//       numberToArray.length - 2 - startingIndex,
+//       1,
+//       comperTwoNumbers[0]
+//     );
+
+//     const number = +numberToArray.join("");
+
+//     const nextSmaller = (number, pre) => {
+//       const numberToArray = n.toString().split("");
+//       const cloneArray = [...numberToArray];
+//       const reversedArray = cloneArray.reverse();
+//       const endSlice = startingIndex + 2;
+//       const comperTwoNumbers = reversedArray.slice(startingIndex, endSlice);
+
+//       if (comperTwoNumbers[0] < comperTwoNumbers[1]) {
+//         numberToArray.splice(
+//           numberToArray.length - 1 - startingIndex,
+//           1,
+//           comperTwoNumbers[1]
+//         );
+
+//         numberToArray.splice(
+//           numberToArray.length - 2 - startingIndex,
+//           1,
+//           comperTwoNumbers[0]
+//         );
+//       }
+
+//       const res = +numberToArray.join("");
+
+//       pre = res;
+
+//       if (number > pre) {
+//         nextSmaller(res);
+//       }
+
+//       return pre;
+//     };
+
+//     return nextSmaller(n, number);
+//   }
+
+//   startingIndex++;
+//   return nextBigger(n, startingIndex);
+// }
+
+// console.log(Math.sqrt(64));
+
+// Testing for 65875
+// It should work for random inputs too: expected 68575 to equal 67558
+// 68575 => 67558
+
+function nextBigger(n, startingIndex = 0) {
+  const numberToArray = n.toString().split("");
+  if (startingIndex > numberToArray.length) return -1;
+  const cloneArray = [...numberToArray];
+  const reversedArray = cloneArray.reverse();
+  const endSlice = startingIndex + 2;
+  const comperTwoNumbers = reversedArray.slice(startingIndex, endSlice);
+
+  if (comperTwoNumbers[0] > comperTwoNumbers[1]) {
+    numberToArray.splice(
+      numberToArray.length - 1 - startingIndex,
+      1,
+      comperTwoNumbers[1]
+    );
+
+    numberToArray.splice(
+      numberToArray.length - 2 - startingIndex,
+      1,
+      comperTwoNumbers[0]
+    );
+
+    return +numberToArray.join("");
+  }
+
+  startingIndex++;
+  return nextBigger(n, startingIndex);
+}
+
+// Testing for 767021139750
+// It should work for random inputs too: expected 767021193750 to equal 767021150379 767021190375
+
+function nextSmaller(n, target, prev, startingIndex = 0) {
+  const numberToArray = n.toString().split("");
+  if (startingIndex > numberToArray.length) return -1;
+  const cloneArray = [...numberToArray];
+  const reversedArray = cloneArray.reverse();
+  const endSlice = startingIndex + 2;
+  const comperTwoNumbers = reversedArray.slice(startingIndex, endSlice);
+  let smaller;
+
+  if (comperTwoNumbers[0] < comperTwoNumbers[1]) {
+    numberToArray.splice(
+      numberToArray.length - 1 - startingIndex,
+      1,
+      comperTwoNumbers[1]
+    );
+
+    numberToArray.splice(
+      numberToArray.length - 2 - startingIndex,
+      1,
+      comperTwoNumbers[0]
+    );
+
+    smaller = +numberToArray.join("");
+
+    if (+numberToArray.join("") > target) {
+      return nextSmaller(+numberToArray.join(""), target, smaller);
+    }
+
+    if (+numberToArray.join("") < target) {
+      return prev;
+    }
+  }
+  startingIndex++;
+  return nextSmaller(n, target, smaller, startingIndex);
+}
+
+// console.log(nextSmaller(767021193750, 767021139750));
+
+function alphabetPosition(text) {
+  return text;
+}
