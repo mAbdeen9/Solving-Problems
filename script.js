@@ -2175,5 +2175,274 @@ function nextSmaller(n, target, prev, startingIndex = 0) {
 // console.log(nextSmaller(767021193750, 767021139750));
 
 function alphabetPosition(text) {
-  return text;
+  const alphabet = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
+  return text
+    .split("")
+    .filter((letter) => {
+      return alphabet.includes(letter.toUpperCase());
+    })
+    .map((letter) => {
+      return alphabet.indexOf(letter.toUpperCase()) + 1;
+    })
+    .join(" ");
 }
+
+// console.log(alphabetPosition("The narwhal bacons at midnight."));
+
+class App {
+  constructor(inputs) {
+    this.Dictionary = inputs;
+  }
+
+  isInDict(word) {
+    const fillterdWord = word
+      .split("")
+      .filter((char) => char.toLowerCase() !== char.toUpperCase())
+      .join("");
+
+    return this.Dictionary.some((e) => e.includes(fillterdWord));
+  }
+}
+
+const testApp = new App(["cat", "car", "bar"]);
+
+// console.log(testApp.isInDict("a"));
+
+// function removeSmallest(numbers) {
+//   const smallestNumber = numbers.reduce((acc, cur) => {
+//     return acc < cur ? acc : cur;
+//   });
+//   let flag = true;
+//   return numbers.filter((num) => {
+//     if (!flag) return num;
+//     if (num != smallestNumber && flag) {
+//       return num;
+//     } else {
+//       flag = false;
+//     }
+//   });
+// }
+
+// const box = document.querySelector(".box");
+// const btn = document.querySelector(".btn");
+// const input = document.querySelector(".insert");
+
+// btn.addEventListener("click", () => {
+//   box.innerHTML = input.value;
+// });
+const reqs = ["gym", "school", "store"];
+const blocks = [
+  {
+    gym: false,
+    school: true,
+    store: false,
+  },
+  {
+    gym: true,
+    school: false,
+    store: true,
+  },
+  {
+    gym: true,
+    school: true,
+    store: false,
+  },
+  {
+    gym: false,
+    school: true,
+    store: false,
+  },
+  {
+    gym: false,
+    school: true,
+    store: true,
+  },
+];
+
+const findTheBlock = (requirement, blocks) => {
+  const destination = [];
+
+  for (let e = 0; e < blocks.length; e++) {
+    let blockDist = {
+      gym: null,
+      school: null,
+      store: null,
+    };
+
+    for (let i = 0; i < blocks.length; i++) {
+      for (let p = 0; p < Object.keys(blocks[i]).length; p++) {}
+      if (
+        blockDist.gym !== null &&
+        blockDist.school !== null &&
+        blockDist.store !== null
+      ) {
+        destination.push({ blockDist, index: e });
+      }
+    }
+  }
+
+  return destination;
+};
+
+function high(x) {
+  const alphabet = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
+  const charsToNumber = x.split(" ").map((num) => {
+    let res = 0;
+    for (let i = 0; i < num.split("").length; i++) {
+      res += Number(alphabet.indexOf(num.split("")[i].toUpperCase()) + 1);
+    }
+    return [res, num];
+  });
+
+  const numbers = charsToNumber.map((n) => {
+    return n[0];
+  });
+
+  const maxNum = Math.max(...numbers);
+
+  return charsToNumber.find((res) => {
+    if (res[0] === maxNum) {
+      return res[1];
+    }
+  })[1];
+}
+
+// console.log(high("man i need a taxi up to ubud"));
+
+function descendingOrder(n) {
+  let numberArray = n.toString().split("");
+  const desArr = [];
+  while (numberArray.length > 0) {
+    let max = Math.max(...numberArray);
+    desArr.push(max);
+    numberArray.splice(numberArray.indexOf(max.toString()), 1);
+  }
+  return desArr.join("").toString();
+}
+
+// console.log(descendingOrder(42145));
+
+// function order(words) {
+//   const wordsArray = words.split(" ");
+//   const sortArray = wordsArray.sort((a, b) => {
+//     const first = a.split("");
+//     const second = b.split("");
+//     const aa = first.find((x) => !isNaN(x));
+//     const bb = second.find((x) => !isNaN(x));
+//     return aa - bb;
+//   });
+//   return sortArray.join("");
+// }
+
+// console.log(order("is2 Thi1s T4est 3a"));
+// // console.log(isNaN("1a2"));
+
+function toCamelCase(str) {
+  if (str.includes("-")) {
+    return str
+      .split("-")
+      .map((e, i) => {
+        if (i === 0 && e.slice(0, 1) === e.slice(0, 1).toLowerCase()) {
+          return e.slice(0, 1) + e.slice(1);
+        }
+        return e.slice(0, 1).toUpperCase() + e.slice(1);
+      })
+      .join("");
+  } else {
+    return str
+      .split("_")
+      .map((e, i) => {
+        if (i === 0 && e.slice(0, 1) === e.slice(0, 1).toLowerCase()) {
+          return e.slice(0, 1) + e.slice(1);
+        }
+        return e.slice(0, 1).toUpperCase() + e.slice(1);
+      })
+      .join("");
+  }
+}
+
+// var countBits = function (n) {
+//   const binary = [];
+//   while (n > 0) {
+//     const divided = n / 2;
+//     if (Number.isInteger(divided)) {
+//       binary.push(0);
+//       n = divided;
+//     } else {
+//       binary.push(1);
+//       n = Math.floor(divided);
+//     }
+//   }
+
+//   return binary.reduce((cur, acc) => cur + acc, 0);
+// };
+
+// console.log((123).toString(2));
+
+var findMissing = function (list) {
+  for (let i = 0; i < list.length - 2; i++) {
+    const nextIndex = i + 1;
+    const thirdIndex = nextIndex + 1;
+    if (list[i] - list[nextIndex] !== list[nextIndex] - list[thirdIndex]) {
+      return list[thirdIndex] - (list[nextIndex] - list[i]);
+    }
+  }
+};
+
+console.log(findMissing([1, 3, 4]));
