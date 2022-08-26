@@ -2435,14 +2435,192 @@ function toCamelCase(str) {
 
 // console.log((123).toString(2));
 
-var findMissing = function (list) {
-  for (let i = 0; i < list.length - 2; i++) {
-    const nextIndex = i + 1;
-    const thirdIndex = nextIndex + 1;
-    if (list[i] - list[nextIndex] !== list[nextIndex] - list[thirdIndex]) {
-      return list[thirdIndex] - (list[nextIndex] - list[i]);
-    }
-  }
-};
+// var findMissing = function (list) {
+//   for (let i = 0; i < list.length - 2; i++) {
+//     const nextIndex = i + 1;
+//     const thirdIndex = nextIndex + 1;
+//     if (list[i] - list[nextIndex] !== list[nextIndex] - list[thirdIndex]) {
+//       return list[thirdIndex] - (list[nextIndex] - list[i]);
+//     }
+//   }
+// };
 
-console.log(findMissing([1, 3, 4]));
+// console.log(findMissing([1, 3, 5, 9, 11]));
+
+function formatDuration(seconds) {
+  if (seconds == "0") return "now";
+  if (seconds < 60) {
+    return seconds > 1 ? seconds + " seconds" : seconds + " second";
+  }
+  let minute = (seconds / 60).toString().split(".")[0];
+  let second = Math.round(
+    ("0." + (seconds / 60).toString().split(".")[1]) * 60
+  );
+  if (minute < 60) {
+    let minuteSyntax = minute > 1 ? minute + " minutes" : minute + " minute";
+    let secondSyntax = second > 1 ? second + " seconds" : second + " second";
+    if (!second) return minuteSyntax;
+    return minuteSyntax + " and " + secondSyntax;
+  }
+  if (minute >= 60) {
+    let hour = (minute / 60).toString().split(".")[0];
+    let minForHours = Math.round(
+      ("0." + (minute / 60).toString().split(".")[1]) * 60
+    );
+
+    let hourSyntax = hour > 1 ? hour + " hours" : hour + " hour";
+    let minuteSyntax =
+      minForHours > 1 ? minForHours + " minutes" : minForHours + " minute";
+    let secondSyntax = second > 1 ? second + " seconds" : second + " second";
+    if (hour > 24) {
+      let day = (hour / 24).toString().split(".")[0];
+      let hourForDay = Math.round(
+        ("0." + (hour / 24).toString().split(".")[1]) * 24
+      );
+      let daySyntax = day > 1 ? day + " days" : day + " day";
+      let hourSyntaxDay =
+        hourForDay > 1 ? hourForDay + " hours" : hourForDay + " hour";
+
+      if (day > 365) {
+        let year = (day / 365).toString().split(".")[0];
+        let dayForYear = Math.round(
+          ("0." + (day / 365).toString().split(".")[1]) * 365
+        );
+
+        let yearSyntax = year > 1 ? year + " years" : year + " year";
+        let daySyntaxYear =
+          dayForYear > 1 ? dayForYear + " days" : dayForYear + " day";
+
+        if (!second) {
+          return (
+            yearSyntax +
+            ", " +
+            daySyntaxYear +
+            ", " +
+            hourSyntaxDay +
+            " and " +
+            minuteSyntax
+          );
+        }
+
+        return (
+          yearSyntax +
+          ", " +
+          daySyntaxYear +
+          ", " +
+          hourSyntaxDay +
+          ", " +
+          minuteSyntax +
+          " and " +
+          secondSyntax
+        );
+      }
+
+      if (!minForHours) {
+        return daySyntax + ", " + hourSyntaxDay + " and " + secondSyntax;
+      }
+
+      if (!hourForDay) {
+        return daySyntax + ", " + minuteSyntax + " and " + secondSyntax;
+      }
+
+      if (!second) {
+        return daySyntax + ", " + hourSyntaxDay + " and " + minuteSyntax;
+      }
+
+      return (
+        daySyntax +
+        ", " +
+        hourSyntaxDay +
+        ", " +
+        minuteSyntax +
+        " and " +
+        secondSyntax
+      );
+    }
+    if (!minForHours) return hourSyntax;
+    if (!second) return hourSyntax + " and " + minuteSyntax;
+    return hourSyntax + ", " + minuteSyntax + " and " + secondSyntax;
+  }
+}
+
+// const testInterVal = function getRoundedSecondTime(callback) {
+//   let time;
+//   const result = () => {
+//     return time.toLocaleTimeString();
+//   };
+//   const inter = setInterval(() => {
+//     time = new Date();
+//     console.log(time.getSeconds());
+
+//     if (time.getSeconds() == 0) {
+//       clearInterval(inter);
+//       callback(result());
+//     }
+//   }, 1000);
+// };
+
+// const test123 = testInterVal(function (time) {
+//   console.log(time);
+// });
+
+// const bl = () => {
+//   setTimeout(() => {
+//     console.log(123);
+//   }, 3000);
+// };
+
+// bl();
+
+// function namblablae(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     console.log(i);
+//   }
+// }
+
+// namblablae([0, 1, 2, 3, 4, 5]);
+
+// console.log(Math.pow(9, 2) + 8);
+
+// digPow(89, 1) should return 1 since 8¹ + 9² = 89 = 89 * 1
+// digPow(92, 1) should return -1 since there is no k such as 9¹ + 2² equals 92 * k
+// digPow(695, 2) should return 2 since 6² + 9³ + 5⁴= 1390 = 695 * 2
+// digPow(46288, 3) should return 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+
+// console.log(Math.pow(9, 1) + Math.pow(2, 2));
+
+// function digPow(n, p) {
+//   const numberArr = n.toString().split("");
+//   let myP = p;
+//   let powRes = 0;
+//   numberArr.forEach((n) => {
+//     powRes += Math.pow(n, myP);
+//     myP++;
+//   });
+//   const res = powRes / n;
+//   if (Math.ceil(res) === res) return res;
+//   return -1;
+// }
+
+// digPow(92, 1);
+
+// const input = ["tst$", "$ssa"];
+
+// const result = input
+//   .map((word) =>
+//     word
+//       .split("")
+//       .filter((letter) => letter !== "$")
+//       .join("")
+//       .toUpperCase()
+//   )
+//   .join(" ");
+
+// console.log(result);
+
+// (() => {
+//   let x = (y = 10);
+// })();
+
+// console.log(typeof x);
+// console.log(typeof y);
