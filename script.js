@@ -2624,3 +2624,838 @@ function formatDuration(seconds) {
 
 // console.log(typeof x);
 // console.log(typeof y);
+
+// const testCatchAsync = new Promise((res, rej) => {
+//   const randomNumber = Math.random();
+//   if (randomNumber > 0.5) res("You Win 🤩");
+//   if (randomNumber < 0.5) rej("You Lost 💩 ");
+// });
+
+// testCatchAsync.then((res) => console.log(res)).catch((err) => console.log(err));
+
+// const catchAsync = (fun) => {
+//   return () => {
+//     fun.catch((err) => console.log(err));
+//   };
+// };
+
+// catchAsync(testCatchAsync)();
+
+// const runAsyncFunc = async () => {
+//   try {
+//     const resolve = await testCatchAsync;
+//     if (resolve) console.log(resolve);
+//   } catch (err) {
+//     console.log(err);
+//     return err;
+//   }
+// };
+
+// runAsyncFunc()
+
+// const dataFromApi = {
+//   status: "success",
+//   data: [
+//     {
+//       _id: [
+//         {
+//           name: "FTTH drop fiber L=20",
+//           value: "15",
+//           type: "NoSerial",
+//           _id: "631de3ea8a51b15c737fe83f",
+//         },
+//       ],
+//     },
+//     {
+//       _id: [
+//         {
+//           name: "חבילת קונקטורים RG6",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631da40e58d17416a3700258",
+//         },
+//         {
+//           name: "תוף טקטי סיב 250 מטר",
+//           value: "3",
+//           type: "NoSerial",
+//           _id: "631da40e58d17416a3700259",
+//         },
+//         {
+//           name: "כבל  100 מטר דרופ 4 גידים",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631da40e58d17416a370025a",
+//         },
+//         {
+//           name: "כבל 100 מטר Coax RG59",
+//           value: "1",
+//           type: "NoSerial",
+//           _id: "631da40e58d17416a370025b",
+//         },
+//         {
+//           name: "שקע טלפון גוויס",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631da40e58d17416a370025c",
+//         },
+//         {
+//           name: "שקע טלפון כפול",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631da40e58d17416a370025d",
+//         },
+//         {
+//           name: "שקע טלפון",
+//           value: "10",
+//           type: "NoSerial",
+//           _id: "631da40e58d17416a370025e",
+//         },
+//       ],
+//     },
+//     {
+//       _id: [
+//         {
+//           name: "FTTH drop fiber L=30",
+//           value: "15",
+//           type: "NoSerial",
+//           _id: "631db4ec58d17416a3700368",
+//         },
+//         {
+//           name: "FTTH drop fiber L=20",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631db4ec58d17416a3700369",
+//         },
+//       ],
+//     },
+//     {
+//       _id: [
+//         {
+//           name: "FTTH drop fiber L=20",
+//           value: "15",
+//           type: "NoSerial",
+//           _id: "63289250f3a1afbf31dcf4c3",
+//         },
+//         {
+//           name: "FTTH drop fiber L=30",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "63289250f3a1afbf31dcf4c4",
+//         },
+//       ],
+//     },
+//     {
+//       _id: [
+//         {
+//           name: "חבילת קונקטורים RG59",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631de87b8a51b15c737fea9c",
+//         },
+//         {
+//           name: "חבילת קונקטורים RG6",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631de87b8a51b15c737fea9d",
+//         },
+//         {
+//           name: "תוף טקטי סיב 250 מטר",
+//           value: "3",
+//           type: "NoSerial",
+//           _id: "631de87b8a51b15c737fea9e",
+//         },
+//       ],
+//     },
+//     {
+//       _id: [
+//         {
+//           name: "FTTH drop fiber L=40",
+//           value: "10",
+//           type: "NoSerial",
+//           _id: "631c6217dfed85a000fb6bf7",
+//         },
+//         {
+//           name: "שקע אף",
+//           value: "15",
+//           type: "NoSerial",
+//           _id: "631c6217dfed85a000fb6bf8",
+//         },
+//         {
+//           name: "כבל רשת 100 מטר CAT5E",
+//           value: "1",
+//           type: "NoSerial",
+//           _id: "631c6217dfed85a000fb6bf9",
+//         },
+//         {
+//           name: "חבילת קונקטורים RG59",
+//           value: "1",
+//           type: "NoSerial",
+//           _id: "631c6217dfed85a000fb6bfa",
+//         },
+//         {
+//           name: "איזולירבנד",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "631c6217dfed85a000fb6bfb",
+//         },
+//         {
+//           name: "מגשר אופטי קטן/גדול",
+//           value: "10",
+//           type: "NoSerial",
+//           _id: "631c6217dfed85a000fb6bfc",
+//         },
+//       ],
+//     },
+//     {
+//       _id: [
+//         {
+//           name: "שקע טלפון גוויס",
+//           value: "5",
+//           type: "NoSerial",
+//           _id: "632875c17e4cca16a7056e80",
+//         },
+//         {
+//           name: "שקע טלפון כפול",
+//           value: "1",
+//           type: "NoSerial",
+//           _id: "632875c17e4cca16a7056e81",
+//         },
+//       ],
+//     },
+//   ],
+// };
+
+// const ddd = {
+//   data: {
+//     status: "success",
+//     data: [
+//       {
+//         _id: [
+//           {
+//             name: "חבילת קונקטורים RG59",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631de87b8a51b15c737fea9c",
+//           },
+//           {
+//             name: "חבילת קונקטורים RG6",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631de87b8a51b15c737fea9d",
+//           },
+//           {
+//             name: "תוף טקטי סיב 250 מטר",
+//             value: "3",
+//             type: "NoSerial",
+//             _id: "631de87b8a51b15c737fea9e",
+//           },
+//         ],
+//       },
+//       {
+//         _id: [
+//           {
+//             name: "FTTH drop fiber L=20",
+//             value: "15",
+//             type: "NoSerial",
+//             _id: "631de3ea8a51b15c737fe83f",
+//           },
+//         ],
+//       },
+//       {
+//         _id: [
+//           {
+//             name: "חבילת קונקטורים RG6",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631da40e58d17416a3700258",
+//           },
+//           {
+//             name: "תוף טקטי סיב 250 מטר",
+//             value: "3",
+//             type: "NoSerial",
+//             _id: "631da40e58d17416a3700259",
+//           },
+//           {
+//             name: "כבל  100 מטר דרופ 4 גידים",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631da40e58d17416a370025a",
+//           },
+//           {
+//             name: "כבל 100 מטר Coax RG59",
+//             value: "1",
+//             type: "NoSerial",
+//             _id: "631da40e58d17416a370025b",
+//           },
+//           {
+//             name: "שקע טלפון גוויס",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631da40e58d17416a370025c",
+//           },
+//           {
+//             name: "שקע טלפון כפול",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631da40e58d17416a370025d",
+//           },
+//           {
+//             name: "שקע טלפון",
+//             value: "10",
+//             type: "NoSerial",
+//             _id: "631da40e58d17416a370025e",
+//           },
+//         ],
+//       },
+//       {
+//         _id: [
+//           {
+//             name: "FTTH drop fiber L=30",
+//             value: "15",
+//             type: "NoSerial",
+//             _id: "631db4ec58d17416a3700368",
+//           },
+//           {
+//             name: "FTTH drop fiber L=20",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631db4ec58d17416a3700369",
+//           },
+//         ],
+//       },
+//       {
+//         _id: [
+//           {
+//             name: "שקע טלפון גוויס",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "632875c17e4cca16a7056e80",
+//           },
+//           {
+//             name: "שקע טלפון כפול",
+//             value: "1",
+//             type: "NoSerial",
+//             _id: "632875c17e4cca16a7056e81",
+//           },
+//         ],
+//       },
+//       {
+//         _id: [
+//           {
+//             name: "FTTH drop fiber L=20",
+//             value: "15",
+//             type: "NoSerial",
+//             _id: "63289250f3a1afbf31dcf4c3",
+//           },
+//           {
+//             name: "FTTH drop fiber L=30",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "63289250f3a1afbf31dcf4c4",
+//           },
+//         ],
+//       },
+//       {
+//         _id: [
+//           {
+//             name: "FTTH drop fiber L=40",
+//             value: "10",
+//             type: "NoSerial",
+//             _id: "631c6217dfed85a000fb6bf7",
+//           },
+//           {
+//             name: "שקע אף",
+//             value: "15",
+//             type: "NoSerial",
+//             _id: "631c6217dfed85a000fb6bf8",
+//           },
+//           {
+//             name: "כבל רשת 100 מטר CAT5E",
+//             value: "1",
+//             type: "NoSerial",
+//             _id: "631c6217dfed85a000fb6bf9",
+//           },
+//           {
+//             name: "חבילת קונקטורים RG59",
+//             value: "1",
+//             type: "NoSerial",
+//             _id: "631c6217dfed85a000fb6bfa",
+//           },
+//           {
+//             name: "איזולירבנד",
+//             value: "5",
+//             type: "NoSerial",
+//             _id: "631c6217dfed85a000fb6bfb",
+//           },
+//           {
+//             name: "מגשר אופטי קטן/גדול",
+//             value: "10",
+//             type: "NoSerial",
+//             _id: "631c6217dfed85a000fb6bfc",
+//           },
+//         ],
+//       },
+//     ],
+//   },
+//   status: 200,
+//   statusText: "OK",
+//   headers: {
+//     "content-type": "application/json; charset=utf-8",
+//   },
+//   config: {
+//     transitional: {
+//       silentJSONParsing: true,
+//       forcedJSONParsing: true,
+//       clarifyTimeoutError: false,
+//     },
+//     transformRequest: [null],
+//     transformResponse: [null],
+//     timeout: 0,
+//     xsrfCookieName: "XSRF-TOKEN",
+//     xsrfHeaderName: "X-XSRF-TOKEN",
+//     maxContentLength: -1,
+//     maxBodyLength: -1,
+//     env: {
+//       FormData: null,
+//     },
+//     headers: {
+//       Accept: "application/json, text/plain, */*",
+//       "Content-Type": "application/json",
+//       authorization:
+//         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGNlNjA0NTE4OTg0NGJjZTFlZTkyYiIsImlhdCI6MTY2MzY5NDMzNCwiZXhwIjoxNjYzNzM3NTM0fQ.DqjgdGnAw6kqf19eFxsyp_45dbkEeSv9sQMCIyROokA",
+//     },
+//     method: "post",
+//     url: "https://gentle-waters-57641.herokuapp.com/api/v1/order/aggregate-user-no-serial",
+//     data: '{"id":"22","startingDate":"2022-09-01","endDate":"2022-09-25"}',
+//   },
+//   request: {},
+// };
+
+// const finalExe = {};
+
+// dataFromApi.data.forEach((o) => {
+//   for (let i of o._id) {
+//     if (!finalExe.hasOwnProperty(i.name)) {
+//       finalExe[i.name] = i.value;
+//     }
+
+//     if (finalExe.hasOwnProperty(i.name)) {
+//       finalExe[i.name] = +finalExe[i.name] + +i.value;
+//     }
+//   }
+// });
+
+// const jsonObj = JSON.stringify(finalExe);
+// console.log(jsonObj);
+
+const dataFromApiAll = {
+  status: "success",
+  data: [
+    {
+      _id: [
+        {
+          name: "FTTH drop fiber L=40",
+          value: "10",
+          type: "NoSerial",
+          _id: "631c6217dfed85a000fb6bf7",
+        },
+        {
+          name: "שקע אף",
+          value: "15",
+          type: "NoSerial",
+          _id: "631c6217dfed85a000fb6bf8",
+        },
+        {
+          name: "כבל רשת 100 מטר CAT5E",
+          value: "1",
+          type: "NoSerial",
+          _id: "631c6217dfed85a000fb6bf9",
+        },
+        {
+          name: "חבילת קונקטורים RG59",
+          value: "1",
+          type: "NoSerial",
+          _id: "631c6217dfed85a000fb6bfa",
+        },
+        {
+          name: "איזולירבנד",
+          value: "5",
+          type: "NoSerial",
+          _id: "631c6217dfed85a000fb6bfb",
+        },
+        {
+          name: "מגשר אופטי קטן/גדול",
+          value: "10",
+          type: "NoSerial",
+          _id: "631c6217dfed85a000fb6bfc",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "חבילת קונקטורים RG59",
+          value: "5",
+          type: "NoSerial",
+          _id: "631de87b8a51b15c737fea9c",
+        },
+        {
+          name: "חבילת קונקטורים RG6",
+          value: "5",
+          type: "NoSerial",
+          _id: "631de87b8a51b15c737fea9d",
+        },
+        {
+          name: "תוף טקטי סיב 250 מטר",
+          value: "3",
+          type: "NoSerial",
+          _id: "631de87b8a51b15c737fea9e",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "כבל רשת 100 מטר CAT5E",
+          value: "3",
+          type: "NoSerial",
+          _id: "632a0e247f451f90cc22c4dd",
+        },
+        {
+          name: "כבל 100 מטר Coax RG59",
+          value: "3",
+          type: "NoSerial",
+          _id: "632a0e247f451f90cc22c4de",
+        },
+        {
+          name: "כבל  100 מטר דרופ 4 גידים",
+          value: "4",
+          type: "NoSerial",
+          _id: "632a0e247f451f90cc22c4df",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "FTTH drop fiber L=20",
+          value: "15",
+          type: "NoSerial",
+          _id: "631de3ea8a51b15c737fe83f",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "FTTH drop fiber L=50",
+          value: "15",
+          type: "NoSerial",
+          _id: "632875b77e4cca16a7056e4b",
+        },
+        {
+          name: "FTTH drop fiber L=40",
+          value: "15",
+          type: "NoSerial",
+          _id: "632875b77e4cca16a7056e4c",
+        },
+        {
+          name: "FTTH drop fiber L=30",
+          value: "15",
+          type: "NoSerial",
+          _id: "632875b77e4cca16a7056e4d",
+        },
+        {
+          name: "כבל רשת 100 מטר CAT5E",
+          value: "1",
+          type: "NoSerial",
+          _id: "632875b77e4cca16a7056e4e",
+        },
+        {
+          name: "איזולירבנד",
+          value: "5",
+          type: "NoSerial",
+          _id: "632875b77e4cca16a7056e4f",
+        },
+      ],
+      user: "עבדול אבו רמילה",
+    },
+    {
+      _id: [
+        {
+          name: "FTTH drop fiber L=40",
+          value: "5",
+          type: "NoSerial",
+          _id: "632a08307f451f90cc22c36c",
+        },
+        {
+          name: "FTTH drop fiber L=50",
+          value: "5",
+          type: "NoSerial",
+          _id: "632a08307f451f90cc22c36d",
+        },
+        {
+          name: "מגשר אופטי קטן/קטן",
+          value: "10",
+          type: "NoSerial",
+          _id: "632a08307f451f90cc22c36e",
+        },
+        {
+          name: "מגשר אופטי קטן/גדול",
+          value: "10",
+          type: "NoSerial",
+          _id: "632a08307f451f90cc22c36f",
+        },
+        {
+          name: "כבל רשת 100 מטר CAT5E",
+          value: "3",
+          type: "NoSerial",
+          _id: "632a08307f451f90cc22c370",
+        },
+      ],
+      user: "יגאל סהר",
+    },
+    {
+      _id: [
+        {
+          name: "FTTH drop fiber L=30",
+          value: "15",
+          type: "NoSerial",
+          _id: "631db4ec58d17416a3700368",
+        },
+        {
+          name: "FTTH drop fiber L=20",
+          value: "5",
+          type: "NoSerial",
+          _id: "631db4ec58d17416a3700369",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "חבילת קונקטורים RG6",
+          value: "5",
+          type: "NoSerial",
+          _id: "631da40e58d17416a3700258",
+        },
+        {
+          name: "תוף טקטי סיב 250 מטר",
+          value: "3",
+          type: "NoSerial",
+          _id: "631da40e58d17416a3700259",
+        },
+        {
+          name: "כבל  100 מטר דרופ 4 גידים",
+          value: "5",
+          type: "NoSerial",
+          _id: "631da40e58d17416a370025a",
+        },
+        {
+          name: "כבל 100 מטר Coax RG59",
+          value: "1",
+          type: "NoSerial",
+          _id: "631da40e58d17416a370025b",
+        },
+        {
+          name: "שקע טלפון גוויס",
+          value: "5",
+          type: "NoSerial",
+          _id: "631da40e58d17416a370025c",
+        },
+        {
+          name: "שקע טלפון כפול",
+          value: "5",
+          type: "NoSerial",
+          _id: "631da40e58d17416a370025d",
+        },
+        {
+          name: "שקע טלפון",
+          value: "10",
+          type: "NoSerial",
+          _id: "631da40e58d17416a370025e",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "FTTH drop fiber L=20",
+          value: "15",
+          type: "NoSerial",
+          _id: "63289250f3a1afbf31dcf4c3",
+        },
+        {
+          name: "FTTH drop fiber L=30",
+          value: "5",
+          type: "NoSerial",
+          _id: "63289250f3a1afbf31dcf4c4",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "שקע טלפון גוויס",
+          value: "5",
+          type: "NoSerial",
+          _id: "632875c17e4cca16a7056e80",
+        },
+        {
+          name: "שקע טלפון כפול",
+          value: "1",
+          type: "NoSerial",
+          _id: "632875c17e4cca16a7056e81",
+        },
+      ],
+      user: "מוחמד עבדין",
+    },
+    {
+      _id: [
+        {
+          name: "FTTH drop fiber L=20",
+          value: "5",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e05",
+        },
+        {
+          name: "FTTH drop fiber L=30",
+          value: "5",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e06",
+        },
+        {
+          name: "FTTH drop fiber L=40",
+          value: "5",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e07",
+        },
+        {
+          name: "FTTH drop fiber L=50",
+          value: "5",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e08",
+        },
+        {
+          name: "סיליקון",
+          value: "1",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e09",
+        },
+        {
+          name: "איזולירבנד",
+          value: "3",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e0a",
+        },
+        {
+          name: "כבל רשת 100 מטר CAT5E",
+          value: "1",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e0b",
+        },
+        {
+          name: "שקע אף",
+          value: "10",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e0c",
+        },
+        {
+          name: "קונקטורים אופטי",
+          value: "10",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e0d",
+        },
+        {
+          name: "מגשר אופטי קטן/גדול",
+          value: "10",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e0e",
+        },
+        {
+          name: "מגשר אופטי קטן/קטן",
+          value: "10",
+          type: "NoSerial",
+          _id: "632875b07e4cca16a7056e0f",
+        },
+      ],
+      user: "נאדר אבו רמילה",
+    },
+  ],
+};
+
+const excelFileAll = (dataFromApi) => {
+  const files = [];
+
+  dataFromApi.data.forEach((o) => {
+    files.forEach((i, e) => {
+      if (i.user === o.user) {
+        files.splice(e, 1);
+      }
+    });
+
+    files.push({ user: o.user });
+  });
+
+  files.forEach((user) => {
+    dataFromApi.data.forEach((o) => {
+      for (let i of o._id) {
+        if (!user.hasOwnProperty(i.name)) {
+          user[i.name] = i.value;
+        }
+
+        if (user.hasOwnProperty(i.name)) {
+          user[i.name] = +user[i.name] + +i.value;
+        }
+      }
+    });
+  });
+
+  return files;
+};
+
+// console.log(excelFileAll(dataFromApiAll));
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  append(value) {
+    const node = { value: value, next: null };
+
+    if (this.tail) {
+      this.tail.next = node;
+    }
+    this.tail = node;
+    if (!this.head) {
+      this.head = node;
+    }
+  }
+
+  toArray() {
+    const myElemnts = [];
+    let curNode = this.head;
+    while (curNode) {
+      myElemnts.push(curNode);
+      curNode = curNode.next;
+    }
+    return myElemnts;
+  }
+}
+
+const link = new LinkedList();
+
+link.append(1);
+link.append(2);
+link.append(3);
+
+console.log(JSON.parse(JSON.stringify(link.toArray())));
