@@ -3458,4 +3458,103 @@ link.append(1);
 link.append(2);
 link.append(3);
 
-console.log(JSON.parse(JSON.stringify(link.toArray())));
+// console.log(JSON.parse(JSON.stringify(link.toArray())));
+
+const dataFromApi2 = {
+  status: "success",
+  data: [
+    {
+      _id: "1234651312\n3123213123\n312412412412\nasd123123123\nasdas123123123\n123124124124asd\n412412421412asd\n12312312312asd123\n\n12312312312123",
+    },
+    {
+      _id: "test1\ntest3\ntest5",
+    },
+    {
+      _id: "312312312312",
+    },
+  ],
+  user: [
+    {
+      _id: "630a591f7637cc30f5ea0e61",
+      name: "מוחמד עבדין",
+      phone: "0525195131",
+      id: "22",
+      role: "user",
+      __v: 0,
+    },
+  ],
+};
+
+const excelFileSerils = (dataFromApi) => {
+  const file = {};
+
+  const allSerials = dataFromApi.data.map((e) => {
+    return e._id;
+  });
+
+  file.serials = allSerials.join("");
+
+  return file;
+};
+
+// console.log(excelFileSerils(dataFromApi2));
+
+// let userAge = null;
+// let defaultAge = 25;
+// let age = userAge ?? defaultAge;
+
+// console.log(age);
+
+function sortByArea(array) {
+  const areaOfCircle = (radius) => Math.PI * radius * radius;
+  const areaOfRectangles = (width, length) => width * length;
+  const arrayValues = [];
+
+  array.forEach((e) => {
+    !isNaN(e)
+      ? arrayValues.push({ value: e, area: areaOfCircle(e) })
+      : arrayValues.push({ value: e, area: areaOfRectangles(...e) });
+  });
+
+  const sortedAscending = arrayValues.sort(function (a, b) {
+    return a.area - b.area;
+  });
+
+  return sortedAscending.map((e) => e.value);
+}
+
+// console.log([[4.23, 6.43], 1.23, 3.444, [1.342, 3.212]].slice(0));
+// console.log([[4.23, 6.43], 1.23, 3.444, [1.342, 3.212]]);
+
+function longestConsec(strarr, k) {
+  if (strarr.length === 0 || k > strarr.length || k <= 0) return "";
+
+  const arrayElements = strarr.map((e, index) => {
+    let concatValue = e;
+    for (let i = 1; i < k; i++) {
+      if (strarr[index + i] !== undefined) {
+        concatValue += strarr[index + i];
+      }
+    }
+
+    return { value: concatValue, length: concatValue.length };
+  });
+
+  let firstLongestElement = { value: "", length: 0 };
+
+  for (let i = 0; i < arrayElements.length; i++) {
+    if (arrayElements[i].length > firstLongestElement.length) {
+      firstLongestElement = arrayElements[i];
+    }
+  }
+
+  return firstLongestElement.value;
+}
+
+// console.log(longestConsec(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 1));
+
+function solution(a, b) {
+  return a.length > b.length ? `${b}${a}${b}` : `${a}${b}${a}`;
+}
+
+console.log(solution("Soon", "Me"));
