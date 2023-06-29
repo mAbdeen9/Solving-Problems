@@ -3557,4 +3557,50 @@ function solution(a, b) {
   return a.length > b.length ? `${b}${a}${b}` : `${a}${b}${a}`;
 }
 
-console.log(solution("Soon", "Me"));
+// console.log(solution("Soon", "Me"));
+
+function createPhoneNumber(numbers) {
+  return `(${numbers[0]}${numbers[1]}${numbers[2]}) ${numbers[3]}${numbers[4]}${numbers[5]}-${numbers[6]}${numbers[7]}${numbers[8]}${numbers[9]}`;
+}
+
+// createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]); // => returns "(123) 456-7890"
+// console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]));
+
+// expandedForm(12); // Should return '10 + 2'
+// expandedForm(42); // Should return '40 + 2'
+// expandedForm(70304); // Should return '70000 + 300 + 4'
+
+function expandedForm(num) {
+  let arrayOfNumbers = [];
+  function Inner(num) {
+    let expandedNum;
+    const getTheZeros = (num) => {
+      let expandedNumString = "";
+      for (let i = 0; i < num.toString().length; i++) {
+        if (expandedNumString == "") {
+          expandedNumString = num.toString()[0];
+        } else {
+          expandedNumString += "0";
+        }
+      }
+
+      return expandedNumString;
+    };
+
+    expandedNum = getTheZeros(num);
+    arrayOfNumbers.push(expandedNum);
+    let subtraction = expandedNum - num;
+    if (subtraction == "0") {
+      return expandedNum;
+    } else {
+      const num = subtraction < 0 ? subtraction * -1 : subtraction;
+      Inner(num);
+    }
+
+    return arrayOfNumbers.join(" + ");
+  }
+  return Inner(num);
+}
+console.log(expandedForm(42));
+
+console.log("123");
