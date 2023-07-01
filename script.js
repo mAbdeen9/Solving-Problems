@@ -3601,6 +3601,12 @@ function expandedForm(num) {
   }
   return Inner(num);
 }
-console.log(expandedForm(42));
 
-console.log("123");
+const newDate = new Date();
+
+// console.log(newDate.__proto__.constructor);
+
+const checkIfInstanceOf = function (obj, classFunction) {
+  if (obj == null || typeof classFunction != "function") return false;
+  return obj instanceof classFunction;
+};
